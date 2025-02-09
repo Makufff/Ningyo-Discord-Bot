@@ -1,20 +1,10 @@
 [package]
-name = "discord-ping-bot"
+name = "discord-bot"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+tokio = { version = "1.0", features = ["full"] }
+serenity = { version = "0.11", default-features = false, features = ["client", "gateway", "rustls_backend", "model"] }
+async-trait = "0.1"
 dotenv = "0.15"
-serenity = { version = "0.12", default-features = false, features = [
-    "builder",
-    "chrono",
-    "client",
-    "framework",
-    "gateway",
-    "http",
-    "model",
-    "standard_framework",
-    "utils",
-    "rustls_backend",
-] }
-tokio = { version = "1.21.2", features = ["macros", "rt-multi-thread"] }

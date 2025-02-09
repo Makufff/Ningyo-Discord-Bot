@@ -25,9 +25,28 @@
 
 #### Clone & Run Ningyo:
 ```sh
-git clone https://github.com/your-repo/ningyo.git
+git clone https://github.com/Makufff/Ningyo-Discord-Bot
 cd ningyo
 cargo run
+```
+
+### 🌊 Project Structure
+```
+ningyo/
+├── Cargo.toml
+├── .env
+└── src/
+    ├── main.rs
+    ├── commands/
+    │   ├── mod.rs
+    │   ├── command_handler.rs
+    │   ├── ping.rs
+    │   └── hello.rs
+    ├── handlers/
+    │   ├── mod.rs
+    │   └── message_handler.rs
+    └── services/
+        └── mod.rs
 ```
 
 ---
@@ -35,18 +54,62 @@ cargo run
 | Command  | Description |
 |----------|------------|
 | `!ping`  | Responds with **Echo from the deep!** |
+| `!hello` | Greets with a mystical mermaid welcome |
 
 ---
-## 🌊 Roadmap
-- [ ] Comming Soon :
+## 🌊 Features
+- 🎯 **SOLID Architecture**: Built with clean, maintainable code following SOLID principles
+- 🔄 **Extensible Command System**: Easy to add new commands without modifying existing code
+- 🌊 **Async Runtime**: Powered by Tokio for efficient async operations
+- 🛡️ **Type-Safe**: Leveraging Rust's strong type system for reliability
 
 ---
-## 🌌 Contributing
-We welcome PRs and ideas! Feel free to fork and improve Ningyo (Help me please).
+## 🌊 Adding New Commands
+1. Create a new file in `src/commands/` (e.g., `new_command.rs`)
+2. Implement the `CommandExecutor` trait
+3. Add the module to `commands/mod.rs`
+4. Register the command in `MessageHandler::new()`
+
+Example:
+```rust
+// src/commands/new_command.rs
+use async_trait::async_trait;
+use serenity::model::channel::Message;
+use serenity::prelude::*;
+use super::command_handler::CommandExecutor;
+
+pub struct NewCommand;
+
+#[async_trait]
+impl CommandExecutor for NewCommand {
+    async fn execute(&self, ctx: &Context, msg: &Message) -> Result<(), String> {
+        msg.channel_id.say(&ctx.http, "Your response here!").await
+            .map_err(|e| format!("Error sending message: {e:?}"))
+    }
+}
+```
 
 ---
-## 🌊 Connect With Us
-Join our Discord server: Comming Soon
+## 🌌 Roadmap
+- [ ] Slash Commands Support
+- [ ] Role Management
+- [ ] Music Player
+- [ ] Custom Event System
+- [ ] Database Integration
+- [ ] Web Dashboard
+
+---
+## 🌊 Contributing
+We welcome contributions! Here's how you can help:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+## 🌌 Connect With Us
+Join our Discord server: Coming Soon
 
 ---
 ## 💀 License

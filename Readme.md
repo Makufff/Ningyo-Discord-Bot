@@ -26,13 +26,13 @@
 #### Clone & Run Ningyo:
 ```sh
 git clone https://github.com/Makufff/Ningyo-Discord-Bot
-cd ningyo
+cd Ningyo-Discord-Bot
 cargo run
 ```
 
 ### 🌊 Project Structure
 ```
-ningyo/
+Ningyo-Discord-Bot/
 ├── Cargo.toml
 ├── .env
 └── src/
@@ -92,11 +92,6 @@ impl CommandExecutor for NewCommand {
 ---
 ## 🌌 Roadmap
 - [ ] Slash Commands Support
-- [ ] Role Management
-- [ ] Music Player
-- [ ] Custom Event System
-- [ ] Database Integration
-- [ ] Web Dashboard
 
 ---
 ## 🌊 Contributing

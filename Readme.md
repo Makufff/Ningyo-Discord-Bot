@@ -10,7 +10,7 @@
 - 🌿 **Graceful & lightweight like the waves**
 - 🌊 **Oceanic and mermaid-themed responses**
 - 🌍 **Powered by Rust & Tokio async runtime**
-- 🌟 **Customizable commands & mystical interactions**
+- 🌟 **Modern Slash Commands for intuitive interaction**
 
 ---
 ## 🐠 Getting Started
@@ -18,6 +18,9 @@
 #### Prerequisites:
 - Install [Rust](https://www.rust-lang.org/tools/install)
 - Set up a [Discord Bot Token](https://discord.com/developers/applications)
+  - Enable "Message Content Intent" in your bot settings
+  - Enable "Server Members Intent" in your bot settings
+  - Enable "Presence Intent" in your bot settings
 - Add `.env` file with your bot token:
   ```env
   DISCORD_TOKEN=your_bot_token_here
@@ -44,54 +47,74 @@ Ningyo-Discord-Bot/
     │   └── hello.rs
     ├── handlers/
     │   ├── mod.rs
-    │   └── message_handler.rs
+    │   └── interaction_handler.rs
     └── services/
         └── mod.rs
 ```
 
 ---
 ## 🌌 Commands
-| Command  | Description |
-|----------|------------|
-| `!ping`  | Responds with **Echo from the deep!** |
-| `!hello` | Greets with a mystical mermaid welcome |
+| Command    | Description |
+|------------|------------|
+| `/ping`    | Responds with latency information |
+| `/hello`   | Greets with a mystical mermaid welcome |
 
 ---
 ## 🌊 Features
-- 🎯 **SOLID Architecture**: Built with clean, maintainable code following SOLID principles
-- 🔄 **Extensible Command System**: Easy to add new commands without modifying existing code
+- 🎯 **Modern Architecture**: Built with clean, maintainable code
+- ⚡ **Slash Commands**: Intuitive Discord-native command interface
 - 🌊 **Async Runtime**: Powered by Tokio for efficient async operations
 - 🛡️ **Type-Safe**: Leveraging Rust's strong type system for reliability
 
 ---
-## 🌊 Adding New Commands
-1. Create a new file in `src/commands/` (e.g., `new_command.rs`)
-2. Implement the `CommandExecutor` trait
-3. Add the module to `commands/mod.rs`
-4. Register the command in `MessageHandler::new()`
-
-Example:
+## 🌊 Adding New Slash Commands
+1. Create a new command in your command handler:
 ```rust
-// src/commands/new_command.rs
-use async_trait::async_trait;
-use serenity::model::channel::Message;
-use serenity::prelude::*;
-use super::command_handler::CommandExecutor;
-
-pub struct NewCommand;
-
 #[async_trait]
-impl CommandExecutor for NewCommand {
-    async fn execute(&self, ctx: &Context, msg: &Message) -> Result<(), String> {
-        msg.channel_id.say(&ctx.http, "Your response here!").await
-            .map_err(|e| format!("Error sending message: {e:?}"))
+impl EventHandler for Handler {
+    async fn interaction_create(&self, ctx: Context, interaction: Interaction) {
+        if let Interaction::ApplicationCommand(command) = interaction {
+            // Add your new command match case here
+            let content = match command.data.name.as_str() {
+                "ping" => "Pong!".to_string(),
+                "hello" => "Greetings from the ocean depths! 🌊".to_string(),
+                _ => "Command not found".to_string(),
+            };
+            
+            command.create_interaction_response(&ctx.http, |response| {
+                response
+                    .kind(InteractionResponseType::ChannelMessageWithSource)
+                    .interaction_response_data(|message| message.content(content))
+            })
+            .await
+            .unwrap();
+        }
     }
+}
+```
+
+2. Register your command with Discord:
+```rust
+#[tokio::main]
+async fn main() {
+    // ... existing setup code ...
+    
+    let guild_id = GuildId(YOUR_GUILD_ID);
+    
+    GuildId::set_application_commands(&guild_id, &ctx.http, |commands| {
+        commands
+            .create_application_command(|command| {
+                command.name("your_command").description("Your command description")
+            })
+    })
+    .await
+    .unwrap();
 }
 ```
 
 ---
 ## 🌌 Roadmap
-- [ ] Slash Commands Support
+- [x] Slash Commands Support
 
 ---
 ## 🌊 Contributing

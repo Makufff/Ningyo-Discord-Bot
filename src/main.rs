@@ -6,20 +6,18 @@ mod commands;
 mod handlers;
 mod services;
 
-use crate::handlers::message_handler::MessageHandler;
+use crate::handlers::interaction_handler::InteractionHandler;
 
 #[tokio::main]
 async fn main() {
     dotenv().ok();
     let token = env::var("DISCORD_TOKEN").expect("Expected a token in the environment");
     
-    let intents = GatewayIntents::GUILD_MESSAGES 
-        | GatewayIntents::DIRECT_MESSAGES 
-        | GatewayIntents::MESSAGE_CONTENT;
+    let intents = GatewayIntents::GUILDS;
     
-    let handler = MessageHandler::new();
+    let handler = InteractionHandler::new();
     
-    let mut client = Client::builder(token, intents)
+    let mut client = Client::builder(&token, intents)
         .event_handler(handler)
         .await
         .expect("Error creating client");

@@ -23,7 +23,7 @@
 
 ### Installation:
 ```sh
-git clone https://github.com/Makufff/Ningyo-Discord-Bot
+git clone https://github.com/Makufff/Ningyo-Discord-Bot.git
 cd Ningyo-Discord-Bot
 cargo run
 ```

@@ -1,0 +1,20 @@
+[package]
+name = "discord-ping-bot"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dotenv = "0.15"
+serenity = { version = "0.12", default-features = false, features = [
+    "builder",
+    "chrono",
+    "client",
+    "framework",
+    "gateway",
+    "http",
+    "model",
+    "standard_framework",
+    "utils",
+    "rustls_backend",
+] }
+tokio = { version = "1.21.2", features = ["macros", "rt-multi-thread"] }

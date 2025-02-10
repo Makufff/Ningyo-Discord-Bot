@@ -2,6 +2,7 @@ use async_trait::async_trait;
 use serenity::model::application::interaction::application_command::ApplicationCommandInteraction;
 use serenity::prelude::*;
 use super::command_handler::SlashCommand;
+use serenity::builder::CreateApplicationCommand;
 
 pub struct PingCommand;
 
@@ -24,5 +25,9 @@ impl SlashCommand for PingCommand {
             })
             .await
             .map_err(|e| format!("Error sending response: {e:?}"))
+    }
+
+    fn register<'a>(&self, command: &'a mut CreateApplicationCommand) -> &'a mut CreateApplicationCommand {
+        command.name(self.name()).description(self.description())
     }
 }

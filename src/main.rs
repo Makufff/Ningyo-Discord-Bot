@@ -1,28 +1,35 @@
-use std::env;
 use dotenv::dotenv;
 use serenity::prelude::*;
+use std::env;
+use crate::handlers::interaction_handler::InteractionHandler;
 
 mod commands;
 mod handlers;
-mod services;
-
-use crate::handlers::interaction_handler::InteractionHandler;
 
 #[tokio::main]
 async fn main() {
+    // Load environment variables
     dotenv().ok();
-    let token = env::var("DISCORD_TOKEN").expect("Expected a token in the environment");
     
+    // Initialize bot configuration
+    let token = env::var("DISCORD_TOKEN")
+        .expect("Expected DISCORD_TOKEN in environment");
     let intents = GatewayIntents::GUILDS;
     
-    let handler = InteractionHandler::new();
-    
-    let mut client = Client::builder(&token, intents)
-        .event_handler(handler)
-        .await
-        .expect("Error creating client");
-
-    if let Err(why) = client.start().await {
+    // Create and start the client
+    if let Err(why) = create_and_start_client(&token, intents).await {
         println!("Client error: {why:?}");
     }
+}
+
+async fn create_and_start_client(token: &str, intents: GatewayIntents) -> Result<(), String> {
+    let handler = InteractionHandler::new();
+    
+    let mut client = Client::builder(token, intents)
+        .event_handler(handler)
+        .await
+        .map_err(|e| format!("Error creating client: {e:?}"))?;
+
+    client.start().await
+        .map_err(|e| format!("Error running client: {e:?}"))
 }

@@ -1,11 +1,11 @@
-# 🌊 Ningyo - The Enchanted Mermaid Bot 🌊
+# 🌊 Ningyo(u) - The Enchanted Mermaid Bot 🌊
 
 ![Ningyo Banner](/assets/banner.webp)
 
 > "A mystical mermaid, emerging from the depths of the ocean, ready to guide and enchant your server..." 
 
-## 🌊 About Ningyo
-**Ningyo** (人形) is a mystical mermaid-themed Discord bot, built with **Rust** and powered by the **Serenity** library. Designed to bring an oceanic and fantasy-inspired experience to your Discord server!
+## 🌊 About Ningyo(u)
+**Ningyo(u)** (人形) is a mystical mermaid-themed Discord bot, built with **Rust** and powered by the **Serenity** library. Designed to bring an oceanic and fantasy-inspired experience to your Discord server!
 
 - 🌿 **Graceful & lightweight like the waves**
 - 🌊 **Oceanic and mermaid-themed responses**
@@ -24,8 +24,8 @@
 
 ### Installation:
 ```sh
-git clone https://github.com/YourUsername/Ningyo-Discord-Bot.git
-cd Ningyo-Discord-Bot
+git clone https://github.com/YourUsername/Ningyo(u)-Discord-Bot.git
+cd Ningyo(u)-Discord-Bot
 cargo run
 ```
 
@@ -157,7 +157,7 @@ fn register_default_commands(commands: &mut HashMap<String, Box<dyn SlashCommand
 
 ## 🌊 Project Structure
 ```
-Ningyo-Discord-Bot/
+Ningyo(u)-Discord-Bot/
 ├── Cargo.toml
 ├── .env
 └── src/

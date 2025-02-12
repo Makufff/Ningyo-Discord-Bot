@@ -5,7 +5,7 @@
 > "A mystical mermaid, emerging from the depths of the ocean, ready to guide and enchant your server..." 
 
 ## 🌊 About Ningyo(u)
-**Ningyo(u)** (人形) is a mystical mermaid-themed Discord bot, built with **Rust** and powered by the **Serenity** library. Designed to bring an oceanic and fantasy-inspired experience to your Discord server!
+**Ningyo(u)** (人魚) is a mystical mermaid-themed Discord bot, built with **Rust** and powered by the **Serenity** library. Designed to bring an oceanic and fantasy-inspired experience to your Discord server!
 
 - 🌿 **Graceful & lightweight like the waves**
 - 🌊 **Oceanic and mermaid-themed responses**

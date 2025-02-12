@@ -24,8 +24,8 @@
 
 ### Installation:
 ```sh
-git clone https://github.com/YourUsername/Ningyo(u)-Discord-Bot.git
-cd Ningyo(u)-Discord-Bot
+git clone https://github.com/YourUsername/Ningyo-Discord-Bot.git
+cd Ningyo-Discord-Bot
 cargo run
 ```
 

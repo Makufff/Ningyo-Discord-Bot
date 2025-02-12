@@ -157,7 +157,7 @@ fn register_default_commands(commands: &mut HashMap<String, Box<dyn SlashCommand
 
 ## 🌊 Project Structure
 ```
-Ningyo(u)-Discord-Bot/
+Ningyo-Discord-Bot/
 ├── Cargo.toml
 ├── .env
 └── src/
